@@ -1,0 +1,31 @@
+---
+title: "ClassPrep4"
+author: "Jack Fay"
+format: 
+  html:
+    embed-resources: true
+---
+
+### What is the difference between a colour’s hue and a colour’s intensity?
+
+
+### Think of an example where you would want to use a sequential colour scale that’s different from the one given in the text. Then, think of examples where you would use a diverging colour scale and an unordered colour scale.
+
+
+### Some gestalt inferences take priority over others. Using Figure 1.21, give an example of a gestalt inference that takes priority over another one.
+
+
+### “Bar charts are better than Pie charts for visualizing a single categorical variable.” Explain how results shown in Figure 1.23 support this claim.
+
+
+#### Suppose you have a scatterplot of height on the y-axis vs. weight on the x-axis for people born in Canada, Mexico, and the United States. You now want to explore whether the relationship is different for people born in the United States, people born in Canada, and people born in Mexico. Should you use different shapes to distinguish the three countries or should you use different colours? Explain using either Figure 1.24 or 1.25.
+
+
+### When might you use the left-side of Figure 1.27 to show the law school data? When might you use the right-side of Figure 1.27 to show the law school data?
+
+
+### Summary: What are two takeaways from Sections 1.3-1.7?
+
+### What is one question that you have about the reading?
+
+
