@@ -1,0 +1,9 @@
+---
+title: "Section 2: Basics"
+format: html
+---
+
+```{r}
+
+```
+

@@ -1,0 +1,56 @@
+---
+title: "Class Prep 1"
+author: "Jack Fay"
+format: 
+  html:
+    embed-resources: true
+---
+
+1. What is your name and what is your class year (first-year, sophomore, junior, senior)?
+
+My name is Jack Fay and I am a junior. 
+
+2. What is/are your major(s) and minor(s), either actual or intended?
+
+I am a data science and psychology major. 
+
+3. Why did you decide to take this course?
+
+I decided to take this course because I enjoyed Intro to Data Science and i want to expand my R visualizations skillset.
+
+4. In what semester and year did you take STAT/DATA 234? STAT 213?
+
+I took STAT/DATA 234 in the Spring term of 2023. I took STAT 213 in the Fall term of 2022. 
+
+5. Have you taken CS 140?
+  
+Yes, I took CS 140 in the Fall term of 2022. 
+
+6. Have you used Git before? If so, in what context?
+
+Yes, I have used it to push and pull documents on R and intelliJ. I used Git frequently over the summer as I worked on a group project. 
+
+7. Before this course, did you use R Studio on your desktop?
+
+Yes, I used it over the summer and downloaded it again last semester to make sure I was up to date. 
+
+8. What is your hometown: city, state, country?
+
+I am from Easthampton Massachusetts. 
+
+9. Do you play a sport on campus? If so, what sport? If not, what is an activity that you do on or off-campus?
+
+I do not play a sport on campus but I play a lot of golf and ski.
+
+10. What is your favorite TV show or movie or band/musical artist?
+
+My favorite TV show at the moment is Peaky Blinders.
+
+11. Tell me something about yourself.
+
+I have an older brother and a younger sister. 
+
+12. What are your expectations for this class and/or what do you hope to gain from this class?
+
+I hope to expand my skills on R and to be able to make impressive visualizations that look professional and communicate information effectively.
+

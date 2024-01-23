@@ -1,0 +1,36 @@
+---
+title: "ClassPrep2"
+author: "Jack Fay"
+format: 
+  html:
+    embed-resources: true
+---
+
+### 1. Using either Anscombe’s quartet or the income/voter turnout graph as an example, explain why it’s valuable to look at data graphically instead of examining data only with summary statistics.
+
+Anscombe’s quartet makes a great case for why it is valuable to look at data graphically. Although the means and measures of association between x and y for each data set are essentially the same, the shape of the relationships between x and y are vastly different. Looking exclusively at summary statistics, you would not be able to notice the differences, and might be led to believe that the data sets are nearly identical, which is clearly not the case. 
+
+
+### 2. Take a look at the bar plot in Figure 1.4. Give a couple of reasons for why the chart has “bad taste.”
+
+The bar plot has "bad taste" because it lists the labels twice when it is unnecessary to do so, and it presents the information in a visually confusing manner which makes comparison challenging. Overall, the plot conveys very little information, yet the viewer's ability to assess that information is inhibited by the excessive 3-D display.    
+
+### 3. Why might you not always want to maximize the data-to-ink ratio when making charts?
+
+Simplification is often the way to go, but the inclusion of elements such as labels and gridlines can help accentuate the message of the data. Although these aspects may technically be extraneous, they can help reduce cognitive difficulty for viewers. 
+
+### 4. What do the authors mean when they say that “relative comparisons need a stable baseline” and how does that affect your ability to interpret the coloured stacked bar plot in Figure 1.11?
+
+The authors mean you need to be able to easily compare values to a consistent baseline to understand the trend. As shown in Figure 1.11, the overall trend is clear because you can compare the values of the bars to the x-axis. You can do a similar thing with the bottom most category (Type D), yet when you try to compare the other categories over time and to each other, the moving baseline makes it highly confusing to discern trends. 
+
+### 5. What are two key takeaways from Sections 1.1 and 1.2?
+
+Visualizations are not just additive, but are often extremely necessary to understand qualities of the data such as shape and association.
+The decision to include/disclude data points can impact the data significantly and should be considered intently.
+
+Avoiding excessive and/or confusing decorative embellishments is a key aspect in building visualizations. 
+Even if all visual aspects of the plot are perfect, bad data and deceptive displays are common pitfalls. 
+
+### 6. What is one question that you have about the reading?
+
+How flexible should personal judgement be when of simplifying charts? It seems there are times for simplification, and times to add superfluous graphics that draw the viewer in.

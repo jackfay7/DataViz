@@ -1,0 +1,142 @@
+---
+title: "Section 2: Basics"
+format: html
+---
+
+```{r}
+library(palmerpenguins)
+library(tidyverse)
+theme_set(theme_minimal())
+penguins
+```
+
+```{r}
+ggplot(data = penguins, aes(x = bill_length_mm)) +
+  geom_freqpoly() 
+```
+
+
+```{r}
+ggplot(data = penguins, aes(x = bill_length_mm)) +
+  geom_histogram(colour = "black", fill = "white", bins = 15) +
+  facet_wrap(~ species)
+```
+
+```{r}
+ggplot(data = penguins, aes(x = species)) +
+  geom_bar(stat = "count")
+```
+
+```{r}
+penguins <- penguins%>% as_tibble()
+
+penguins_sum <- penguins %>%
+  group_by(species)%>%
+  summarise(count = n())
+ggplot(data = penguins_sum, 
+       aes(x = species, y = count))+
+  geom_bar(stat = "identity")
+
+
+# Equivalent to using geom_col
+ggplot(data = penguins_sum, 
+       aes(x = species, y = count))+ 
+  geom_col()
+```
+
+```{r}
+ggplot(data = penguins, aes(x = species, fill = sex)) +
+  geom_bar(position = "stack") + ## don't need "stack" because it's default
+  scale_fill_viridis_d()
+```
+```{r}
+ggplot(data = penguins, aes(x = species, fill = sex)) +
+  geom_bar(position = "dodge") + ## NA values makes the plot appear weird with different width bars 
+  scale_fill_viridis_d()
+```
+
+```{r}
+# dropping any observation with missing data 
+penguins <- penguins%>%
+  na.omit()
+
+# dropping NAs within a specific variable 
+penguins <- penguins%>% 
+  filter(!is.na(sex))
+
+
+ggplot(data = penguins, aes(x = species, fill = sex)) +
+  geom_bar(position = "dodge") + 
+  scale_fill_viridis_d()
+```
+```{r}
+# write in the defaults 
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(stat = "identity", position = "identity") +
+  facet_null()+
+  coord_cartesian()
+  
+```
+
+# Exercise 1. Make another plot of bill_length_mm with a different geom that is used for a single quantitative variable.
+```{r}
+# histogram
+ggplot(data = penguins, 
+       aes( x = bill_length_mm))+
+  geom_histogram()
+
+# frequency polygon
+ggplot(data = penguins, 
+       aes( x = bill_length_mm))+
+  geom_freqpoly()
+
+# boxplot
+ggplot(data = penguins, 
+       aes( x = bill_length_mm))+
+  geom_boxplot()
+```
+
+# Exercise 2. Create a plot of a quantitative and a categorical variable in the penguins data set.
+```{r}
+ggplot(data = penguins, 
+       aes(x = species, y = bill_length_mm))+ 
+  geom_violin()
+```
+
+# Exercise 3. Modify the frequency plot made with geom_freqpoly() to use colour in two different ways:
+# change the colour of the line to any colour that R knows. A list of some colours can be found at this link.
+```{r}
+ggplot(data = penguins, 
+       aes( x = bill_length_mm))+
+  geom_freqpoly(color = "dodgerblue")
+```
+
+
+# add a colour aesthetic to make three different frequency lines, one for each species of penguin.
+```{r}
+ggplot(data = penguins, 
+       aes( x = bill_length_mm, color = species))+
+  geom_freqpoly()
+```
+# Modify the scatterplot and smoother so that the points are coloured by species, but there is only one smoother instead of three.
+
+```{r}
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm )) +
+  geom_point(aes(color = species))+
+  geom_smooth(se = F)
+```
+# There are three different coloured smoothers (one for each species) but the points are all the same colour.
+
+```{r}
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point()+
+  geom_smooth(se = F, aes(color = species))
+```
+# Exercise 5. Construct another graph that explicitly uses all 7 grammar of graphics parameters (you may set some of these parameters to be the default values, but you should do so explicitly).
+
+```{r}
+
+```
+
+
+
