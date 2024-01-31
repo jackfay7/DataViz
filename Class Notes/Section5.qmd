@@ -1,0 +1,61 @@
+---
+title: "Section5"
+format: html
+---
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(here)
+df <- read_excel(here::here("Class Notes/data/slu_graduates_17_23.xlsx"))
+
+## fixes error in the data
+df <- df |> mutate(across(everything(),
+.fns = ~replace(., . ==  "STATS" , "STAT")))
+```
+
+
+```{r}
+df<- df %>%
+  select(-starts_with("minor"))%>%
+  pivot_longer(starts_with("major"), names_to = "major_num", values_to = "major")
+```
+
+```{r}
+# cleaning data for the plot 
+majors_plot <- df %>%
+  filter(!is.na(major))%>%
+  # mutate(sex_ind = if_else(sex == "M", true = 1, false = 0))
+  group_by(sex, major)%>%
+  summarise(n_majors = n())%>%
+  ungroup()%>%
+  pivot_wider(names_from = sex, values_from = n_majors)%>%
+  mutate(prop_male = M / (`F` + M),
+         total_students = `F` + M)%>%
+  filter(total_students >= 70)%>%
+  mutate(major = fct_reorder(major, prop_male))
+         
+
+
+# additional data frame to highlight stats, math, and cs in the plot below
+mcss <- majors_plot%>%
+  filter(major == "CS" | major == "STAT" | major == "MATH")
+
+# could also do: filter(major %in% c("STAT", "MATH", "CS"))
+
+# plot 
+ggplot(data = majors_plot,
+       aes(x = major, y = prop_male))+
+  geom_segment(aes(xend = major, y = 0, yend = prop_male))+
+  geom_point()+
+  coord_flip()+
+  theme(axis.text = element_text(size = 10))+
+  geom_point(data = mcss, color = "yellow")+
+  geom_text_repel(data = mcss, aes(label = major)) +
+  geom_point(data = mcss, size = 6, shape = 1, color = "red", linewidth = 4)+
+  labs(caption = "Data Source: SLU Institutional Research Office")
+```
+```{r}
+
+```
+

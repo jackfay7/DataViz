@@ -1,0 +1,35 @@
+---
+title: "Quiz1"
+author: "Jack Fay"
+format: 
+  html:
+    embed-resources: true
+---
+
+```{r}
+library(tidyverse)
+
+data("diamonds")
+```
+
+## Question 1 
+```{r}
+ggplot(data = diamonds, 
+       aes(x = price))+
+  geom_histogram(fill = "dodgerblue", color = "black", bins = 10, bindwith = 1000)+
+  facet_wrap(~cut)
+```
+
+## Question 2
+```{r}
+ggplot(data = diamonds, 
+       aes(x = price))+
+  geom_histogram(fill = "dodgerblue", color = "black", bins = 10)+
+  facet_wrap(~cut)+
+  theme_minimal()+
+  theme(axis.ticks = element_line(color = "red"), 
+        panel.background = element_rect(fill = "tan"))
+```
+
+## Question 3 
+

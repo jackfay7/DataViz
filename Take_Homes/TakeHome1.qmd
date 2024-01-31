@@ -1,0 +1,43 @@
+---
+title: "Take-Home Assessment 1"
+author: "Your Name"
+format: 
+  html:
+    embed-resources: true
+---
+
+## Question 1 
+It is easiest to see the overall trend in the count through time for Group 5, because it is on the bottom and therefore has a stable baseline for comparison. This means that we can compare the count in relation to the axis easily for Group 5, yet we will likely have trouble gauging several of the other Group levels. 
+
+## Question 2 
+### A.
+In this scenario, we would want to use a diverging color scale to color the states because we want to show any existing percent change and differentiate between rising and falling percent changes. We have a zero point where there is no change, then maybe a red scale for increase and a blue scale for decrease. 
+
+### B. 
+In this scenario, we would want to use a sequential color scale because we want to show which states have more or less cases per 100,000 people across the board. We could order these states, and we are not looking at change in cases, so we want a natural progression on the color scale as amount of cases increase. 
+
+## Question 3 
+### A. 
+If I had the data on each student's assessment grade, I would use a histogram to vizualize this data because we have a single quantitative variable. A frequency polygon plot would be just as effective to show the center, spread, shape, and sample size of the data.
+
+### B. 
+A histogram and frequency polygon could both tell you more about the spread, outliers, shape, and sample size. There are many aspects to each of these additional pieces of information such as skewness, kurtosis, mode(s), median, range, frequency of different values, and any non-existent values. 
+
+## Question 4
+### A. 
+The change made from plot 1 to plot 2 is a switch from `geom_point()` to `geom_boxplot()`.
+
+### B. 
+The change made in the second plot is the addition of `coord_flip()` which flips the axis.
+
+### C. 
+The change in the second plot is an added `geom_jitter()` layer which allows the points to be plotted with random horizontal displacement to avoid overlap. It seems that in geom_boxplot(), you may have used `position = position_nudge()` to move the boxplots to the left of the geom_jitter. The boxplots must be made second, because they appear to be covering some of the points. 
+
+## Question 5 
+### A. 
+I prefer Plot 1 because the lollipop plot includes a zero baseline, as opposed to Plot 2 which utilizes an x-axis scale that begins at 40. Generally, bar charts, and charts of similar nature, should use a zero baseline to depict the data clearly without bias. Despite what I have just said, it is somewhat a matter of preference in terms of what you are trying to depict. Though it may not be giving the viewer the most accurate idea, the plot starting at 40 makes the difference in number of players look much more substantial.
+
+### B. 
+I prefer Plot 1 because it allows you to examine and compare distributions of home runs without overlapping lines of numerous different colors. It is difficult for the human eye to perceive nine different colors all on the same plot. In Plot 2, the lines are very hard to compare due to the fact that take up lots of space and overlap. Any real differences are far more identifiable in the first plot. 
+
+

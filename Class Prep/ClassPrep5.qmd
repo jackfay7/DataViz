@@ -1,0 +1,143 @@
+---
+title: "ClassPrep5"
+author: "Jack Fay"
+format: 
+  html:
+    embed-resources: true
+---
+
+```{r}
+library(tidyverse)
+library(here)
+theme_set(theme_minimal())
+hpi_df <- read_csv(here("Class Prep/data/hpi-tidy.csv"))
+hpi_df
+```
+```{r}
+ggplot(data = hpi_df, aes(x = Footprint, y = Wellbeing)) +
+  geom_point()
+```
+
+```{r}
+hpi_us <- hpi_df |> filter(Country == "United States of America")
+
+ggplot(data = hpi_df, aes(x = Footprint, y = Wellbeing)) +
+  geom_point() +
+  geom_text(data = hpi_us, aes(label = Country)) ## specify
+```
+
+```{r}
+library(ggrepel)
+ggplot(data = hpi_df, aes(x = Footprint, y = Wellbeing)) +
+  geom_point() +
+  geom_text_repel(data = hpi_us, aes(label = Country)) +
+  geom_point(data = hpi_us, size = 3, shape = 1) ## create a second point that is an open circle (shape = 1) with a larger size (size = 3) to surround the United States point on the scatterplot
+```
+
+```{r}
+ggplot(data = hpi_df, aes(x = Footprint, y = Wellbeing)) +
+  geom_point() +
+  geom_text_repel(data = hpi_us, aes(label = Country)) +
+  geom_point(data = hpi_us, size = 3, shape = 1) +
+  labs(title = "Countries with a Higher Ecological Footprint Tend to Have Citizens with Higher Wellbeing", ## add title
+    subtitle = "Wellbeing is on a 1-10 scale", ## add subtitle (smaller text size than the title)
+    caption = "Data Source: http://happyplanetindex.org/countries", ## add caption to the bottom of the figure
+    x = "Ecological Footprint", ## change x axis label
+    y = "Wellbeing") ## change y axis label
+```
+
+
+## Exercise 1: For each of the core dplyr functions mutate(), arrange(), select(), slice(), filter(), group_by(), and summarise(), write a one sentence summary of the overall purpose of the function.
+
+mutate() - to create new variables, or edit existing variables in the data set
+
+arrange() - to order cases based on the values of a variable 
+
+select() - to select or remove variables in the data set
+
+slice() - to select certain intervals of cases, specific cases, and to omit certain cases. slice_max() and min allow you to find cases based on variable data
+
+filter() - to select rows based on conditions of the variables
+
+group_by()- to group cases together based on one or more variables
+
+summarise() - creates a new data set where you can examine summary statistics for the existing or transformed data 
+
+## Exercise 2: Review mutate(). Create a new variable in hpi_df that is equal to Wellbeing / Footprint.
+
+```{r}
+hpi_df1 <- hpi_df%>%
+  mutate(wellbeing_over_footprint = Wellbeing/Footprint)
+```
+
+
+## Exercise 3: Review mutate() and case_when(). Create a new variable in hpi_df that is equal to "80s" if LifeExp is in the 80’s, "70s" if LifeExp is in the 70s, and "Below 70" if LifeExp is less than 70.
+
+```{r}
+hpi_df2 <- hpi_df %>%
+  mutate(Decade = case_when(
+    LifeExpectancy >= 80 ~ "80s",
+    LifeExpectancy >= 70 ~ "70s",
+    TRUE ~ "Below 70"))
+```
+
+
+## Exercise 4. Review arrange(). Sort the hpi_df data so that the country with the highest LifeExp is in the first row and the country with the lowest LifeExp is in the last row.
+
+```{r}
+hpi_df3 <- hpi_df%>%
+  arrange(desc(LifeExpectancy))
+```
+
+
+## Exercise 5. Review select(). Make a data frame from hpi_df that only has the variables Country and LifeExp.
+
+```{r}
+hpi_df4 <- hpi_df%>%
+  select(Country, LifeExpectancy)
+```
+
+
+## Exercise 6. Review slice(). Make a data frame from hpi_df that only has the first 5 rows.
+
+```{r}
+hpi_df5 <- hpi_df%>%
+  slice(1:5)
+```
+
+
+## Exercise 7. Review filter(). Make a data frame from hpi_df that only has countries in the "Western World" Region.
+
+```{r}
+hpi_df6 <- hpi_df%>%
+  filter(Region == "Western World")
+```
+
+
+## Exercise 8. Review filter(). Make a data frame from hpi_df that only has countries with a LifeExp less than 55.
+
+```{r}
+hpi_df7 <- hpi_df%>%
+  filter(LifeExpectancy < 55)
+```
+
+
+## Exercise 9. Review group_by() and summarise(). Make a table of the number of countries in each Region. (Hint: recall that the n() function is the counting function in dplyr).
+
+```{r}
+hpi_df8 <- hpi_df%>%
+  group_by(Region)%>%
+  summarise(total_countries = n())
+```
+
+
+## Exercise 10. Review group_by() and summarise(). Make a table with the maximum LifeExp in each Region.
+
+```{r}
+hpi_df9 <- hpi_df%>%
+  group_by(Region)%>%
+  summarise(highest_life_expectancy = max(LifeExpectancy))
+```
+
+
+Again, we will see non-dplyr functions as well throughout the course, but we will try to review them as they come along. As long as you have a solid dplyr base (and, of course a good ggplot2 base), you should be good to go!

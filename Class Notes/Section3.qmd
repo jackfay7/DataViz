@@ -1,0 +1,247 @@
+---
+title: "Section3"
+format: html
+---
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+```
+# Example 1 
+```{r}
+# Option 1 
+penguins_sum <- penguins |> group_by(species, year) |>
+  summarise(n_penguins = n()) |>
+  mutate(year = factor(year))
+
+ggplot(data = penguins_sum, aes(x = year, fill = species)) +
+  geom_col(aes(y = n_penguins)) +
+  theme_minimal() +
+  scale_fill_viridis_d()
+
+
+# Option 2
+
+ggplot(data = penguins_sum, aes(x = year, y = n_penguins,
+                                colour = species, group = species)) +
+  geom_line() +
+  theme_minimal() +
+  scale_colour_viridis_d()
+
+
+
+
+# Second option is better because the first does not provide a stable baseline for comparison 
+```
+
+# Example 2 
+```{r}
+# Option 1 
+ggplot(data = penguins, aes(x = species)) +
+  geom_bar(fill = "darkslategray4") +
+  theme_minimal()
+
+
+# Option 2
+ggplot(data = penguins, aes(x = species)) +
+  geom_bar(fill = "darkslategray4") +
+  coord_cartesian(ylim = c(50, 160)) +
+  theme_minimal()
+
+
+
+# Option 1 is better because it starts from 0 and we want to see the total amount
+```
+# Example 3 
+```{r}
+# Option 1
+library(ggbeeswarm)
+ggplot(data = penguins, aes(x = species, y = body_mass_g)) +
+  geom_beeswarm(alpha = 0.7) +
+  theme_minimal()
+
+# Option 2
+
+ggplot(data = penguins, aes(x = species, y = body_mass_g)) +
+  geom_beeswarm(alpha = 0.7) +
+  theme_minimal() +
+  ylim(c(0, 6500))
+
+# Option 2 is better because it doesn't waste blank space. You can see every point and compare numerically easily. 
+```
+
+# Example 4 
+```{r}
+# Option 1 
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(colour = species)) +
+  scale_colour_viridis_d() +
+  theme_minimal()
+
+# Option 2 
+
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point() +
+  facet_wrap( ~ species) +
+  theme_minimal() 
+
+# Option 1 is better because it better utilizes the position of points, so we can easily see which species have high vs. low bill depths 
+```
+
+# Example 4.2
+```{r}
+# Option 1 
+penguins <- penguins |> mutate(species_island_sex = interaction(species, 
+                                                                island,
+                                                                sex))
+ggplot(data = penguins |>
+         filter(!is.na(sex)), aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(colour = species_island_sex)) +
+  scale_colour_viridis_d() +
+  theme_minimal()
+
+# Option 2 
+
+ggplot(data = penguins |> filter(!is.na(sex)), 
+                                 aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point() +
+  facet_wrap(~ species_island_sex) +
+  theme_minimal()
+
+# Option 2 is better because its hard for humans to accurately perceive 10 different colors 
+# neither is a great option though 
+
+
+
+
+# Best option
+penguins <- penguins%>%
+  filter(!is.na(sex))
+
+ggplot(data = penguins, 
+       aes(x = bill_length_mm, y = bill_depth_mm, shape = species, color = sex))+ 
+  geom_point()+
+  facet_wrap(~island)
+
+# Other best option 
+ggplot(data = penguins |> filter(!is.na(sex)),
+       aes(x = bill_length_mm,
+           y = bill_depth_mm))+
+  geom_point(aes(color = sex))+
+  facet_grid(species ~ island)
+```
+
+# Example 5 
+```{r}
+# Option 1 
+ggplot(data = penguins, aes(x = island)) +
+  geom_bar(fill = "darkslategray4") +
+  theme_minimal()
+
+# Option 2 
+
+penguins_island <- penguins |> count(island)
+ggplot(penguins_island, aes(x = "", y = n, fill = island)) +
+  geom_bar(stat = "identity", width = 1, colour = "white") +
+  coord_polar("y", start = 0) +
+  
+  theme_void() +
+  scale_fill_viridis_d()
+
+# Option 1 is better because we rarely, possibly never want a pie chart 
+# The bar plot is stronger because it effectively uses position rather than angle
+```
+
+# Example 6 
+```{r}
+# Option 1 
+
+library(here)
+hpi_df <- read_csv(here("data/hpi-tidy.csv"))
+hpi_extreme <- hpi_df |>
+  arrange(desc(HappyPlanetIndex)) |>
+  slice(1:10, (nrow(hpi_df) - 9):nrow(hpi_df)) |>
+  mutate(Country = fct_reorder(Country, HappyPlanetIndex))
+
+ggplot(data = hpi_extreme, aes(x = Country, y = HappyPlanetIndex,
+                               fill = Region)) +
+  geom_col() +
+  scale_fill_viridis_d() +
+  coord_flip() +
+  theme_minimal()
+
+
+# Option 2 
+ggplot(data = hpi_extreme, aes(x = Country, y = HappyPlanetIndex,
+                               colour = Region)) +
+  geom_point() +
+  geom_segment(aes(xend = Country, y = 0, yend = HappyPlanetIndex)) +
+  scale_colour_viridis_d() +
+  coord_flip() +
+  theme_minimal()
+
+# We could say option 1 is better because its easier to distinguish the region by color 
+# We could say option 2 is better because it has a better data-to-ink ratio
+```
+
+# 3.3: Excercise 1
+Exercise 1. Consider a data set on Covid 19 cases in counties across the United States. For each county, we have the following variables:
+- number of cases
+- change in the number of cases from the previous week of the year (negative if cases have decreased, positive if cases have increased)
+- whether the county voted Republican or Democrat in the most recent presidential election
+- population population change in the last decade (a 1.2% change would indicate that the population in the county increased by 1.2%)
+
+Now suppose that you want to construct map of the counties, filling the area of the county with one of the variables.
+
+### For the number of cases variable, would you use a sequential, diverging, or qualitative fill colour scale?
+I would use a sequential color scale because we are trying to show the number of cases and that should be indicated by the shade of the color. Number of cases is clearly ordered. 
+
+### For the change in the number of cases variable, would you use a sequential, diverging, or qualitative fill colour scale?
+For this scenario, I would use a diverging color scale because we want to demonstrate change in either direction from the previous amount of cases. 
+
+### For the political party variable, would you use a sequential, diverging, or qualitative fill colour scale?
+I would use a qualitative color scale for this because we are just showing a difference in category that is unordered. 
+
+### For the percent population change variable, would you use a sequential, diverging, or qualitative fill colour scale?
+I would use the diverging color scale again for this scenario because we are showing the change from a previous value.
+
+
+
+# Excericise 2 
+Exercise 2. Read the examples section of the Help file for ?scale_colour_viridis_d and examine the difference between scale_colour_viridis_d(), ?scale_colour_viridis_c(), and scale_colour_viridis_b(). Explain what the difference is between the three functions.
+
+
+```{r}
+ggplot(data = penguins,
+       aes(x = bill_length_mm, 
+           y = bill_depth_mm))+
+  geom_point(aes(colour = species))+
+  scale_colour_viridis_d() # d is for discrete variables
+
+
+ggplot(data = penguins,
+       aes(x = bill_length_mm, 
+           y = bill_depth_mm))+
+  geom_point(aes(colour = body_mass_g))+
+  scale_colour_viridis_c() # c is for continuous variables 
+
+
+ggplot(data = penguins,
+       aes(x = bill_length_mm, 
+           y = bill_depth_mm))+
+  geom_point(aes(colour = body_mass_g))+
+  scale_colour_viridis_b() # b is for binning a continuous variable
+```
+# Exercise 3 
+```{r}
+library(here)
+hpi_df <- read_csv(here("Class Notes/data/hpi-tidy.csv"))
+```
+
+```{r}
+# Make it as ugly as possible using themes
+ggplot(data = hpi_df, aes(x = Footprint, y = Wellbeing, colour = Region)) +
+  geom_point()+
+  theme(plot.background = element_rect(fill = "turquoise"), axis.text = element_text(size = 10, family = "courier", color = "yellow"), axis.line = element_line(arrow = arrow()), panel.grid = element_blank())
+```
+

@@ -5,27 +5,36 @@ format:
   html:
     embed-resources: true
 ---
-
 ### What is the difference between a colour’s hue and a colour’s intensity?
 
+The hue of a color refers to the dominant wavelength of the light reflected off an object's surface. The intensity of a color refers to how vivid or saturated that hue is made. 
 
 ### Think of an example where you would want to use a sequential colour scale that’s different from the one given in the text. Then, think of examples where you would use a diverging colour scale and an unordered colour scale.
 
+You might want to use a sequential colour scale to represent test scores, amount of weight lifted, or something along those lines where there is a low and high. Additionally, you may want to use a diverging colour scale for representing IQ scores in terms of deviation from the known mean to highlight abnormally high and low scores. Another example could be showing East to West, or North to South. Lastly, you may want to use a unordered colour scale when representing non-related groups. An example of this that is common is when making side by side boxplots when your categorical variable is of a nominal data type, i.e., comparing crime rates from different regions of the country. 
 
 ### Some gestalt inferences take priority over others. Using Figure 1.21, give an example of a gestalt inference that takes priority over another one.
 
+An example of a gestalt inference that takes priority in Figure 1.21 is connection. In the bottom frame, the trend is immidiately far more noticeable as both the triangles and the circles are tracked from left to right respectively. This is not something that is immediately noticable in the former version. 
 
 ### “Bar charts are better than Pie charts for visualizing a single categorical variable.” Explain how results shown in Figure 1.23 support this claim.
 
+The results and replication show that people have much more of an issue with assessing and comparing quantities/percentages based on angles as opposed position and length. There were far less errors made on nearly every other format than charts based on angles. 
 
 #### Suppose you have a scatterplot of height on the y-axis vs. weight on the x-axis for people born in Canada, Mexico, and the United States. You now want to explore whether the relationship is different for people born in the United States, people born in Canada, and people born in Mexico. Should you use different shapes to distinguish the three countries or should you use different colours? Explain using either Figure 1.24 or 1.25.
 
+Based on Figure 1.25, I would use three different shapes to distinguish the countries because the countries are unordered and we want to compare their relationships. 
 
 ### When might you use the left-side of Figure 1.27 to show the law school data? When might you use the right-side of Figure 1.27 to show the law school data?
 
+You might want to use the left-side of Figure 1.27, without the baseline, if you wanted to demonstrate that the near forty year incline in law school enrollment switched to an abrupt decline around 2011. This also exhibits the comparison of enrollment between 2011, and the most recent year that enrollment was this low in the 70's. You might want to use the right-side, that includes the baseline, to show that, although there was a strong decline around 2011, enrollment is still high and may in fact merely be regressing towards the mean.
 
 ### Summary: What are two takeaways from Sections 1.3-1.7?
 
+When deciding to use color or shapes to represent different groupings of data, it is important to consider whether it is unordered.
+
+The inclusion of a baseline can durastically change the appearance of charts. 
+
 ### What is one question that you have about the reading?
 
-
+I am still slightly confused by Figures 1.24 and 1.25 in terms of there implications and when to use the different channels. 
